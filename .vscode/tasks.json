@@ -1,0 +1,25 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build Project",              // 任务名称，可自定义
+            "type": "shell",
+            "command": "arm-none-eabi-gcc",
+            "args": [
+                "-mcpu=cortex-m4",                 // 根据你的芯片核心修改
+                "-mthumb",                         // Thumb指令集
+                "-O2",                             // 优化等级
+                "-c",                              // 只编译不链接
+                "${workspaceFolder}/src/*.c",      // 所有源文件
+                "-I${workspaceFolder}/inc",        // 头文件路径
+                "-o",                              // 输出
+                "${workspaceFolder}/build/output.o"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true                  // 设为默认，可直接按 Ctrl+Shift+B
+            },
+            "problemMatcher": ["$gcc"]              // 让VSCode识别编译错误并跳转
+        }
+    ]
+}
